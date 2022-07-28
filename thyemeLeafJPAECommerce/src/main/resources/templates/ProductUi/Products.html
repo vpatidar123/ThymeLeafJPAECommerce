@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en" xlmns:th = "https://www.thymeleaf.org/">
+
+<head>
+<title>Product List </title>
+<!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+
+<style>
+body {
+	margin-top : 8%;
+}
+</style>
+
+</head>
+
+<body>
+
+<div class="container">
+
+<div><a th:href="@{/product/addProduct}"class ="btn btn-dark">Add Product</a></div>
+
+
+
+&nbsp;
+<table class="table table-bordered">
+<tr class="table-dark">
+<th> ID </th>
+<th> Product Name </th>
+<th> Description </th>
+<th> DateCreated </th>
+<th> LastUpdated </th>
+<th> unitPrice </th>
+<th> units in stock </th>
+<th> imageUrl </th>
+<th> categoryId </th>
+</tr>
+
+<tr th:each = "product : ${PRODUCT}">
+	<td th:text="${product.id}" />
+	<td th:text = "${product.name}"/>
+	<td th:text = "${product.description}" />
+	<td th:text = "${product.datecreated}" />
+	<td th:text = "${product.lastUpdated}" />
+	<td th:text = "${product.unitPrice}"/>
+	<td th:text = "${product.unitsInStock}" />
+	<td th:text = "${product.imageUrl}" />
+	<td th:text = "${product.categoryId}" />
+	<td>
+		<a class ="btn btn-lg btn-primary" th:href="@{/product/updateForm(productId = ${product.id} )}">update</a>
+	</td>
+	<td>
+		<a class ="btn btn-lg btn-danger" th:href="@{/product/delete(productId = ${product.id} )}" 	
+		onclick = "if(!(confirm('Are you sure to delete this product details?'))) ">delete</a>
+	
+	</td>
+	
+</tr>
+
+</table>
+</div>
+
+
+</body>
+</html>
